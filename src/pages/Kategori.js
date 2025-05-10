@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import decryptData from '../components/Decrypted';
 
 function Kategori() {
     const [kategori, setKategori] = useState([]);
@@ -7,6 +8,12 @@ function Kategori() {
     useEffect(() => {
         axios.get('http://localhost:5000/api/kategori')
         .then(res => res.data.status && setKategori(res.data.data))
+        // .then(res => {
+        //     if (res.data.status) {
+        //         const decrypted = decryptData(res.data.data);
+        //         setKategori(decrypted);
+        //     }
+        // })
         .catch(err => console.error(err));
     }, []);
 
